@@ -14,6 +14,13 @@ const chunk = (arr, size = 1) => {
   return acc
 }
 
+const compact = (arr) => {
+  if (!arr) return []
+
+  return arr.filter(item => !!item)
+}
+
 module.exports = {
-  chunk
+  chunk,
+  compact
 }

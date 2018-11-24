@@ -1,4 +1,4 @@
-const { chunk } = require('./array')
+const { chunk, compact } = require('./array')
 
 describe('Array', () => {
   describe('chunk', () => {
@@ -26,6 +26,24 @@ describe('Array', () => {
       const expectedResult = [ [ 1, 2 ], [ 3,  4 ], [ 5 ] ]
 
       expect(result).toEqual(expectedResult)
+    })
+  })
+
+  describe('compact', () => {
+    it('should return empty arr if no arguments passed', () => {
+      const result = compact()
+      expect(result).toEqual([])
+    })
+
+    it('should return empty arr if passed arr is empty', () => {
+      const result = compact([])
+      expect(result).toEqual([])
+    })
+
+    it('should return array without NaN, 0, emptyString, false, null and undefined', () => {
+      const mockedArr = [ NaN, 0, 1, '', 2, false, 3, null, undefined ]
+      const result = compact(mockedArr)
+      expect(result).toEqual([ 1, 2, 3 ])
     })
   })
 })
