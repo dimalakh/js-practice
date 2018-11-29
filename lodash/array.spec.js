@@ -1,4 +1,4 @@
-const { chunk, compact } = require('./array')
+const { chunk, compact, difference } = require('./array')
 
 describe('Array', () => {
   describe('chunk', () => {
@@ -44,6 +44,30 @@ describe('Array', () => {
       const mockedArr = [ NaN, 0, 1, '', 2, false, 3, null, undefined ]
       const result = compact(mockedArr)
       expect(result).toEqual([ 1, 2, 3 ])
+    })
+  })
+
+  describe('difference', () => {
+    const mockedArr = [1, 2, 3]
+
+    it('should return an empty array if array equal to values', () => {
+      const result = difference(mockedArr, mockedArr)
+      expect(result).toEqual([])
+    })
+    it('should return empty array if one of arguments is not defined', () => {
+      const result = difference(mockedArr)
+      expect(result).toEqual([])
+    })
+    it('should return difference', () => {
+      const mockedValues = [ 2, 3, 4]
+      const result = difference(mockedArr, mockedValues)
+      expect(result).toEqual([ 1 ])
+    })
+    it('should return difference with different types', () => {
+      const mockedArr = [ 1, null, 2, 3, 'Hello', false ]
+      const mockedValues = [ 1, 2 ]
+      const result = difference(mockedArr, mockedValues)
+      expect(result).toEqual([ null, 3, 'Hello', false ])
     })
   })
 })

@@ -20,7 +20,16 @@ const compact = (arr) => {
   return arr.filter(item => !!item)
 }
 
+const difference = (arr, values) => {
+  if (!arr || !values) return []
+
+  return arr.filter(item => {
+    return !values.some(value => value === item)
+  })
+}
+
 module.exports = {
   chunk,
-  compact
+  compact,
+  difference
 }
