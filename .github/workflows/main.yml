@@ -1,7 +1,6 @@
 name: Experiment
 on: 
-  schedule:
-  - cron: '0 */2 * * *'
+    pull_request:
 
 jobs:
   job1:
